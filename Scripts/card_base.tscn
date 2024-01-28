@@ -1,0 +1,223 @@
+[gd_scene load_steps=15 format=3 uid="uid://dbgb116eyotma"]
+
+[ext_resource type="Script" path="res://CardUI.gd" id="1_q0gvh"]
+[ext_resource type="Texture2D" uid="uid://cntskjmcfwjxv" path="res://Assets/Cards/cardBack_blue3.png" id="2_8wwnt"]
+[ext_resource type="Texture2D" uid="uid://c7ek8q67ke01l" path="res://Assets/Icons/d8.svg" id="3_vi547"]
+[ext_resource type="Texture2D" uid="uid://bj614tea2h403" path="res://Assets/Icons/shield.svg" id="4_bmv0l"]
+[ext_resource type="Texture2D" uid="uid://cjwd4i5d04plq" path="res://Assets/Icons/sword.svg" id="4_q1xk6"]
+[ext_resource type="Script" path="res://CardStateMachine.gd" id="6_r2bt0"]
+[ext_resource type="Script" path="res://Scripts/BaseCardState.gd" id="7_3sir1"]
+[ext_resource type="Script" path="res://Scripts/ClickedCardState.gd" id="8_tgfsq"]
+[ext_resource type="Script" path="res://Scripts/DraggingCardState.gd" id="9_u35om"]
+[ext_resource type="Script" path="res://Scripts/ReleaseCardState.gd" id="10_yllwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wjnk"]
+size = Vector2(140, 190)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut285"]
+bg_color = Color(0.658824, 0.658824, 0.658824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga8d1"]
+bg_color = Color(0.686275, 0.435294, 0.282353, 1)
+border_width_left = 8
+border_width_right = 8
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfpxd"]
+bg_color = Color(0.305882, 0.631373, 0.792157, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CardUI" type="Control"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q0gvh")
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+position = Vector2(92, 122)
+shape = SubResource("RectangleShape2D_0wjnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 26.0
+offset_right = 162.0
+offset_bottom = 216.0
+mouse_filter = 2
+
+[node name="CardBackground" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ut285")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardArt" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+position = Vector2(70, 84)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_8wwnt")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NamePanel" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ga8d1")
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/NamePanel"]
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+text = "Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionContainer" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfpxd")
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescriptionContainer"]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 168.0
+scale = Vector2(0.4, 0.4)
+text = "Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Sword" type="Sprite2D" parent="."]
+self_modulate = Color(0.823529, 0.301961, 0.301961, 1)
+position = Vector2(22, 206)
+rotation = 1.8326
+scale = Vector2(1.39, 1.4)
+texture = ExtResource("4_q1xk6")
+
+[node name="AttackContainer" type="Sprite2D" parent="Sword"]
+modulate = Color(0.627451, 0.627451, 0.627451, 1)
+position = Vector2(10.2086, -10.2071)
+rotation = -1.83263
+scale = Vector2(0.714631, 0.719082)
+skew = 0.00358367
+texture = ExtResource("3_vi547")
+
+[node name="Node" type="Control" parent="Sword"]
+layout_mode = 3
+anchors_preset = 0
+rotation = -1.8344
+
+[node name="AttackLabel" type="Label" parent="Sword/Node"]
+layout_mode = 0
+offset_left = -8.59104
+offset_top = 4.31446
+offset_right = 35.409
+offset_bottom = 28.3145
+scale = Vector2(0.72, 0.72)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaContainer" type="Sprite2D" parent="."]
+self_modulate = Color(0.305882, 0.631373, 0.792157, 1)
+position = Vector2(22, 26)
+texture = ExtResource("3_vi547")
+
+[node name="Node2D" type="Control" parent="ManaContainer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ManaLabel" type="Label" parent="ManaContainer/Node2D"]
+layout_mode = 0
+offset_left = -22.0
+offset_top = -12.0
+offset_right = 22.0
+offset_bottom = 12.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="Sprite2D" parent="."]
+self_modulate = Color(0.686275, 0.435294, 0.282353, 0.996078)
+position = Vector2(162, 216)
+rotation = 0.785398
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("4_bmv0l")
+
+[node name="HealthContainer" type="Sprite2D" parent="Shield"]
+modulate = Color(0.658824, 0.658824, 0.658824, 1)
+position = Vector2(-0.300522, -0.300529)
+rotation = -0.785398
+scale = Vector2(0.714286, 0.714286)
+texture = ExtResource("3_vi547")
+
+[node name="Node2D" type="Control" parent="Shield"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HealthLabel" type="Label" parent="Shield/Node2D"]
+layout_mode = 0
+offset_left = -17.6777
+offset_top = 5.55584
+offset_right = 26.3223
+offset_bottom = 29.5558
+rotation = -0.785397
+scale = Vector2(0.72, 0.72)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_r2bt0")
+initial_state = NodePath("Base")
+
+[node name="Base" type="Node" parent="CardStateMachine"]
+script = ExtResource("7_3sir1")
+
+[node name="Clicked" type="Node" parent="CardStateMachine"]
+script = ExtResource("8_tgfsq")
+state = 1
+
+[node name="Dragging" type="Node" parent="CardStateMachine"]
+script = ExtResource("9_u35om")
+state = 2
+
+[node name="Release" type="Node" parent="CardStateMachine"]
+script = ExtResource("10_yllwo")
+state = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="DropPointDetector" to="." method="_on_drop_point_detector_area_entered"]
+[connection signal="area_exited" from="DropPointDetector" to="." method="_on_drop_point_detector_area_exited"]

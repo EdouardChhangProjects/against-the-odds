@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d24vgpfne4myn"]
+
+[ext_resource type="Script" path="res://Scene/hand.gd" id="1_k8n41"]
+[ext_resource type="PackedScene" uid="uid://dbgb116eyotma" path="res://Scripts/card_base.tscn" id="2_bk7bb"]
+
+[node name="Hand" type="HBoxContainer"]
+offset_right = 1152.0
+offset_bottom = 250.0
+alignment = 1
+script = ExtResource("1_k8n41")
+
+[node name="CardUI" parent="." instance=ExtResource("2_bk7bb")]
+layout_mode = 2
+CardName = "Chevalier"
+
+[node name="CardUI2" parent="." instance=ExtResource("2_bk7bb")]
+layout_mode = 2
+CardName = "Ethan"
+
+[node name="CardUI3" parent="." instance=ExtResource("2_bk7bb")]
+layout_mode = 2
+CardName = "Chat"
+
+[node name="CardUI4" parent="." instance=ExtResource("2_bk7bb")]
+layout_mode = 2
+CardName = "Chat"

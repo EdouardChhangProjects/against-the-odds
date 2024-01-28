@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bge446lekidpc"]
+
+[ext_resource type="Texture2D" uid="uid://cntskjmcfwjxv" path="res://Assets/Cards/cardBack_blue3.png" id="1_13ith"]
+[ext_resource type="Script" path="res://CardPile.gd" id="1_sw5tf"]
+
+[node name="CardPile" type="Control"]
+custom_minimum_size = Vector2(175, 225)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sw5tf")
+
+[node name="CardBack0" type="Sprite2D" parent="."]
+position = Vector2(102, 127)
+texture = ExtResource("1_13ith")
+
+[node name="CardBack1" type="Sprite2D" parent="."]
+position = Vector2(94, 119)
+texture = ExtResource("1_13ith")
+
+[node name="CardBack2" type="Sprite2D" parent="."]
+position = Vector2(86, 111)
+texture = ExtResource("1_13ith")
+
+[node name="CardBack3" type="Sprite2D" parent="."]
+position = Vector2(78, 103)
+texture = ExtResource("1_13ith")
+
+[node name="CardBack4" type="Sprite2D" parent="."]
+position = Vector2(70, 95)
+texture = ExtResource("1_13ith")

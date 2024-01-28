@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq57jfwop740s"]
+
+[ext_resource type="Script" path="res://Battlefield.gd" id="1_p6f1v"]
+
+[node name="Battlefield" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_p6f1v")

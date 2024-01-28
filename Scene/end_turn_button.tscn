@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://sy6jvswk1c3i"]
+
+[ext_resource type="Texture2D" uid="uid://cntskjmcfwjxv" path="res://Assets/Cards/cardBack_blue3.png" id="1_f7stf"]
+[ext_resource type="Texture2D" uid="uid://dtik5hwbbomr4" path="res://Assets/Cards/cardBack_red3.png" id="1_is0hd"]
+[ext_resource type="Texture2D" uid="uid://dq11dxay1lh1h" path="res://Assets/Cards/cardBack_green3.png" id="2_lqq1g"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr7x3"]
+texture = ExtResource("1_f7stf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xi8cg"]
+texture = ExtResource("1_f7stf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2btbw"]
+texture = ExtResource("2_lqq1g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15l5x"]
+texture = ExtResource("1_is0hd")
+
+[node name="EndTurnButton" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1721.0
+offset_bottom = -879.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_pr7x3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xi8cg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2btbw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_15l5x")
+action_mode = 0
+text = "End Turn"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
